@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet"> -->
+    </head>
+    <style>
+     #bcolor{
+       /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#401e50+0,2172bd+43,52a58b+100 */
+background: rgb(64,30,80); /* Old browsers */
+background: -moz-linear-gradient(45deg,  rgb(64,30,80) 0%, rgb(33,114,189) 43%, rgb(82,165,139) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  rgb(64,30,80) 0%,rgb(33,114,189) 43%,rgb(82,165,139) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  rgb(64,30,80) 0%,rgb(33,114,189) 43%,rgb(82,165,139) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#401e50', endColorstr='#52a58b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+margin: -10px;
+   
+     }
+.nav-item:hover{
+    border: 1px solid rgb(251, 131, 195);
+    border-radius: 50px;
+   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cb60b3+0,a80077+49,db36a4+100 */
+background: rgb(203,96,179); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(203,96,179,1) 0%, rgba(168,0,119,1) 49%, rgba(219,54,164,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(203,96,179,1) 0%,rgba(168,0,119,1) 49%,rgba(219,54,164,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(203,96,179,1) 0%,rgba(168,0,119,1) 49%,rgba(219,54,164,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#db36a4',GradientType=1 ); /* IE6-9 */
+
+    padding: 0px;
+}
+.nav-link{
+    color:white;
+
+}
+.nav-link:hover{
+    color:rgb(247, 244, 240);
+    font-weight: bold;
+}
+h1{
+   color:rgb(185, 241, 221);
+   
+}
+.active{
+    color:rgb(31, 2, 19);
+    
+
+}
+.body {
+  
+  padding: 30px 40px;
+  background-color:#010514;
+  border-radius: 12px;
+  width: 40% ;
+  margin: 10% auto;
+  box-sizing: border-box;
+}
+
+    </style>
+    <body>
+        <div id="bcolor">
+        <h1>Auctions</h1>
+        <div class="active">
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+                Not signed in.
+            {% endif %}
+        </div>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cat_list' %}">Categories</a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create' %}">Create Listing</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'watchlistpage' user.username %}">Watch List</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'winnings' %}">Your Winnings</a>
+                </li>
+
+                
+
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+        <hr>
+    </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

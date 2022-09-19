@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>All Categories</h2>
+    <div id="activelist">
+    {% for list in cat_list %}
+    <div class = "card">
+        <a class="title" href={% url 'cat' list.category %}>{{list.category}}</a>
+    </div>  
+    {% endfor %}
+    </div>
+      
+<style>
+        
+#activelist{
+
+    margin-top: 4vw;
+    grid-gap: 2vw;
+    display:grid;
+    width: 40%;
+    margin-left: 30%;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.card{
+    display: grid;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin-left: 5%;
+    border: 1px solid rgb(251, 131, 195);
+    border-radius: 50px;
+   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cb60b3+0,a80077+49,db36a4+100 */
+background: rgb(203,96,179); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(203,96,179,1) 0%, rgba(168,0,119,1) 49%, rgba(219,54,164,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(203,96,179,1) 0%,rgba(168,0,119,1) 49%,rgba(219,54,164,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(203,96,179,1) 0%,rgba(168,0,119,1) 49%,rgba(219,54,164,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#db36a4',GradientType=1 ); /* IE6-9 */
+
+    padding: 10px;
+}
+.title:hover{
+   color:aliceblue;
+    list-style-type: none;
+}
+img{
+        width: 100%;
+    }
+
+.title{
+
+    font-size: 2vw;
+    color:black;
+}
+.listuser{
+    font-weight: bold;
+}
+button{
+    width: 100%;
+}
+h2{
+    padding-bottom: 10px;
+    border-bottom: 2px solid blue;
+}
+</style>
+{% endblock %}
+
+
